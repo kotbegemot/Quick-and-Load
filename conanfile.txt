@@ -1,0 +1,9 @@
+[requires]
+boost/1.71.0@conan/stable
+pybind11/2.3.0@conan/stable
+
+[options]
+
+
+[generators]
+cmake

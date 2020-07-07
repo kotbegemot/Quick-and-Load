@@ -27,9 +27,4 @@ conan_cmake_run(
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(
-        ${PROJECT_NAME} PRIVATE
-        ${CONAN_LIBS}
-        dl
-)
+add_subdirectory(tests)

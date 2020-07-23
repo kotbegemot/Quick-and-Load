@@ -4,7 +4,7 @@ find_package(Python3 COMPONENTS Development)
 include_directories(${Python3_INCLUDE_DIRS})
 
 add_executable(test_embed
-        catch.cpp
+        main.cpp
         test_interpreter.cpp
         fake_python.cpp
         fake_python_1.cpp

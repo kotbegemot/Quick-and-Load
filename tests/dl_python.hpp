@@ -39,3 +39,5 @@ private:
     static std::unique_ptr<storage> instance_;
     static std::once_flag once_;
 };
+
+extern "C" void init();

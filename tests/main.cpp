@@ -16,6 +16,7 @@ std::once_flag dl_python::once_;
 
 int main(int argc, char *argv[]) {
     dl_python::constructor("/usr/local/opt/python@3.8/Frameworks/Python.framework/Versions/3.8/lib/libpython3.8.dylib");
+    init();
     py::scoped_interpreter guard{};
     auto result = Catch::Session().run(argc, argv);
     return result < 0xff ? result : 0xff;

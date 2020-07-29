@@ -32,7 +32,7 @@ class PyWidget final : public Widget {
 
     int the_answer() const override { PYBIND11_OVERLOAD_PURE(int, Widget, the_answer); }
 };
-
+/*
 PYBIND11_EMBEDDED_MODULE(widget_module, m) {
     py::class_<Widget, PyWidget>(m, "Widget")
             .def(py::init<std::string>())
@@ -49,8 +49,24 @@ PYBIND11_EMBEDDED_MODULE(throw_error_already_set, ) {
     auto d = py::dict();
     d["missing"].cast<py::object>();
 }
+*/
+
+constexpr static char init_script[] = R"__(
+        import sys, os
+        from importlib import import_module
+        sys.modules['widget_module'] = widget_module
+    )__";
+
+static py::module widget_module ;
 
 TEST_CASE("Pass classes and data between modules defined in C++ and Python") {
+
+    py::class_<Widget, PyWidget>(widget_module, "Widget")
+            .def(py::init<std::string>())
+            .def_property_readonly("the_message", &Widget::the_message);
+
+    widget_module.def("add", [](int i, int j) { return i + j; });
+    py::exec(init_script, py::globals(), py::dict("widget_module"_a = widget_module));
     auto module = py::module::import("test_interpreter");
     REQUIRE(py::hasattr(module, "DerivedWidget"));
 

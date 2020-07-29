@@ -84,8 +84,7 @@ int PyDict_DelItemString(PyObject *v, const char *key) {
 }
 
 PyObject *PyDict_GetItemString(PyObject *v, const char *key) {
-    return dl_python::get_instance().get < PyObject * (PyObject * ,
-    const char *)>("PyDict_GetItemString")(v, key);
+    return dl_python::get_instance().get < PyObject * (PyObject * ,const char *)>("PyDict_GetItemString")(v, key);
 }
 
 PyObject *PyDict_New(void) {
@@ -93,10 +92,7 @@ PyObject *PyDict_New(void) {
 }
 
 int PyDict_Next(PyObject *mp, Py_ssize_t *pos, PyObject **key, PyObject **value) {
-    return dl_python::get_instance().get<int(PyObject *, Py_ssize_t *, PyObject **, PyObject **)>("PyDict_Next")(mp,
-                                                                                                                 pos,
-                                                                                                                 key,
-                                                                                                                 value);
+    return dl_python::get_instance().get<int(PyObject *, Py_ssize_t *, PyObject **, PyObject **)>("PyDict_Next")(mp,pos,key,value);
 }
 
 Py_ssize_t PyDict_Size(PyObject *mp) {
@@ -350,7 +346,7 @@ PyTypeObject PyInstanceMethod_Type;
 
 PyTypeObject PyProperty_Type;
 
-PyTypeObject PyType_Type;
+_typeobject PyType_Type;
 
 _longobject _Py_FalseStruct;
 
@@ -361,7 +357,7 @@ PyObject _Py_NoneStruct;
 PyObject _Py_NotImplementedStruct;
 
 PyObject *PyDict_GetItem(PyObject *p, PyObject *key) {
-    return dl_python::get_instance().get<PyObject *(PyObject *, PyObject *)>("_PyType_Lookup")(p, key);
+    return dl_python::get_instance().get<PyObject *(PyObject *, PyObject *)>("PyDict_GetItem")(p, key);
 }
 
 PyObject *PyErr_Format(PyObject *exception, const char *format, ...) {
@@ -437,8 +433,7 @@ int PyObject_SetAttr(PyObject *o, PyObject *attr_name, PyObject *v) {
 }
 
 PyObject *PyRun_StringFlags(const char *string, int i, PyObject *o1, PyObject *o2, PyCompilerFlags *cf) {
-    return dl_python::get_instance().get < PyObject *(const char *, int, PyObject *, PyObject *,
-            PyCompilerFlags *)>("PyRun_StringFlags")(string, i, o1, o2, cf);
+    return dl_python::get_instance().get < PyObject *(const char *, int, PyObject *, PyObject *,PyCompilerFlags *)>("PyRun_StringFlags")(string, i, o1, o2, cf);
 }
 
 PyObject *PySequence_Tuple(PyObject *o) {

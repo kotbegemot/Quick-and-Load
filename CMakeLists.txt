@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(dynamic-load-python)
+project(dynamic)
 
 #############################################################################################
 #conan
@@ -27,9 +27,12 @@ conan_cmake_run(
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(
-        ${PROJECT_NAME} PRIVATE
-        ${CONAN_LIBS}
-        dl
-)
+#find_package(Python COMPONENTS Interpreter Development)
+#message("Python_FOUND:${Python_FOUND}")
+#message("Python_VERSION:${Python_VERSION}")
+#message("Python_Development_FOUND:${Python_Development_FOUND}")
+#message("Python_LIBRARIES:${Python_LIBRARIES}")
+find_package(Python3 COMPONENTS Development)
+include_directories(${Python3_INCLUDE_DIRS})
+
+add_subdirectory(tests)

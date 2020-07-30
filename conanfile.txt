@@ -1,6 +1,7 @@
 [requires]
-boost/1.71.0@conan/stable
+boost/1.71.0
 pybind11/2.3.0@conan/stable
+Catch/1.12.1@bincrafters/stable
 
 [options]
 
